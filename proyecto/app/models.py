@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Optional
 
 
 class ProcessingStatus:
@@ -22,10 +23,10 @@ class FileContext:
     original_filename: str
     original_stem: str
     tokens: list[str] = field(default_factory=list)
-    document_type: str | None = None
-    rub: str | None = None
-    cedula: str | None = None
-    canonical_filename: str | None = None
+    document_type: Optional[str] = None
+    rub: Optional[str] = None
+    cedula: Optional[str] = None
+    canonical_filename: Optional[str] = None
     fixes_applied: list[str] = field(default_factory=list)
     validation_errors: list[str] = field(default_factory=list)
     status: str = ProcessingStatus.PENDING
@@ -79,7 +80,7 @@ class FileContext:
 
         self.status = ProcessingStatus.AUTO_FIXED if self.has_changes else ProcessingStatus.VALID
 
-    def mark_rejected(self, message: str | None = None) -> None:
+    def mark_rejected(self, message: Optional[str] = None) -> None:
         """Marca el archivo como rechazado y, opcionalmente, agrega el motivo."""
 
         if message:

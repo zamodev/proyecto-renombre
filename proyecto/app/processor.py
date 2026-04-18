@@ -4,6 +4,7 @@ import logging
 import shutil
 import threading
 from pathlib import Path
+from typing import Optional
 
 from app.config_models import RuleProfile
 from app.exceptions import FileProcessingError
@@ -20,7 +21,7 @@ class FileProcessor:
         self,
         destination_path: str,
         strategies_config: list[dict],
-        rule_profile: RuleProfile | None = None,
+        rule_profile: Optional[RuleProfile] = None,
     ):
         self.destination_path = Path(destination_path)
         self.destination_path.mkdir(parents=True, exist_ok=True)

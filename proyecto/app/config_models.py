@@ -2,6 +2,7 @@
 
 import re
 from dataclasses import dataclass
+from typing import Optional
 
 from app.exceptions import ConfigurationError
 
@@ -99,8 +100,8 @@ class WatchProfile:
     name: str
     watch_path: str
     destination_path: str
-    rules_profile: str | None = None
-    strategies: list[dict] | None = None
+    rules_profile: Optional[str] = None
+    strategies: Optional[list[dict]] = None
     process_existing_on_startup: bool = True
     recursive: bool = False
     stable_wait_seconds: int = 1

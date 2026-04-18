@@ -2,6 +2,7 @@
 """Registro de estrategias usado para construir canales desde la configuración."""
 
 from app.config_models import RuleProfile
+from typing import Optional
 from app.strategies.remove_spaces import RemoveSpacesStrategy
 from app.strategies.uppercase_name import UppercaseNameStrategy
 from app.strategies.validate_extension import ValidateExtensionStrategy
@@ -39,7 +40,7 @@ PROFILE_AWARE_STRATEGIES = {
 }
 
 
-def build_strategy(strategy_config: dict, rule_profile: RuleProfile | None = None):
+def build_strategy(strategy_config: dict, rule_profile: Optional[RuleProfile] = None):
     """Crea una instancia de estrategia a partir de su configuración JSON."""
 
     if not isinstance(strategy_config, dict):
